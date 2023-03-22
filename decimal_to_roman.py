@@ -34,7 +34,10 @@ def decimal_to_roman(decimal):
     ## del 50 al 89
     elif decimal >= 50  and decimal < 90:
         unidadfinal = unidad_decimal(decimal)
-        return "V" + (decimal - 50)
+        return ("X" * int((decimal/10) - 5)) + "L" + unidadfinal
+    elif decimal >= 90 and decimal < 100:
+        unidadfinal = unidad_decimal(decimal)
+        return "XC" + unidadfinal
 
 ## decimal decimal / 10 y unidad decimal % 10
 
@@ -110,6 +113,26 @@ class TestDecimalToRoman(unittest.TestCase):
     def test_cuatronueve(self):
         resultado = decimal_to_roman(49)
         self.assertEqual(resultado, 'XLIX')
+
+    def test_cincuenta(self):
+        resultado = decimal_to_roman(50)
+        self.assertEqual(resultado, 'L')
+    
+    def test_cincosiete(self):
+        resultado = decimal_to_roman(57)
+        self.assertEqual(resultado, 'LVII')
+    
+    def test_seisocho(self):
+        resultado = decimal_to_roman(68)
+        self.assertEqual(resultado, 'XLVIII')
+
+    def test_noventa(self):
+        resultado = decimal_to_roman(90)
+        self.assertEqual(resultado, 'XC')  
+
+    def test_nuevetres(self):
+        resultado = decimal_to_roman(93)
+        self.assertEqual(resultado, 'XCIII') 
 
 
 if __name__ == '__main__':
