@@ -13,7 +13,7 @@ def unidad_decimal(decimal):
         unidad = 'V'+('I' * (unidadinicial - 5))
     elif unidadinicial == 9:
         unidad = 'IX'
-    elif unidadinicial == 0:
+    elif decimal == 0:
         unidad = '0'
     return unidad
 
@@ -56,7 +56,9 @@ def centenas(decimal):
 
 def decimal_to_roman(decimal):
     ## de 0 a 9
-    if decimal < 10:
+    if decimal == 0:
+        return "0"
+    elif decimal < 10:
         unidadtotal = unidad_decimal(decimal)
         return unidadtotal
     ###del 10 al 99
@@ -78,13 +80,16 @@ def decimal_to_roman(decimal):
 ## decimal decimal / 10 y unidad decimal % 10
 
 class TestDecimalToRoman(unittest.TestCase):
-    def test_uno(self):
+    def test_1(self):
         # pre condicion
         ### NO HAY ###
         # proceso
         resultado = decimal_to_roman(1)
         # verificacion
         self.assertEqual(resultado, 'I')
+    def test_0(self):
+        resultado = decimal_to_roman(0)
+        self.assertEqual(resultado, '0')
     def test_2(self):
         resultado = decimal_to_roman(2)
         self.assertEqual(resultado, 'II')
